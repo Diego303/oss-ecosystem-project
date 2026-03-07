@@ -1,0 +1,79 @@
+---
+---
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">OSS Ecosystem</div>
+    <ul class="nav-links">
+      <li><a href="#sec-i">intake</a></li>
+      <li><a href="#sec-a">architect</a></li>
+      <li><a href="#sec-v">vigil</a></li>
+      <li><a href="#cta" class="cta">Empezar</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 28px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--f-head);
+    font-weight: 700;
+    font-size: 15px;
+    color: #ededed;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+  }
+
+  .nav-links .cta {
+    background: #ededed;
+    color: #0a0a0a;
+    padding: 6px 16px;
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .nav-links a:not(.cta) {
+      display: none;
+    }
+  }
+</style>

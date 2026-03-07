@@ -1,0 +1,41 @@
+---
+interface Props {
+  variant: 'intake' | 'architect' | 'vigil';
+  items: string[];
+}
+
+const { variant, items } = Astro.props;
+---
+
+<ul class:list={['feature-list', `fl-${variant}`]}>
+  {items.map((item) => (
+    <li>{item}</li>
+  ))}
+</ul>
+
+<style>
+  .feature-list {
+    list-style: none;
+    margin-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .feature-list li {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fl-intake li { color: #9999a5; }
+  .fl-intake li::before { content: '\25FB'; color: #ededed; font-size: 8px; }
+
+  .fl-architect li { color: #57534E; }
+  .fl-architect li::before { content: '\25B3'; color: #C85A32; font-size: 10px; }
+
+  .fl-vigil li { color: #064E3B; }
+  .fl-vigil li::before { content: '\25C7'; color: #10B981; font-size: 10px; }
+</style>

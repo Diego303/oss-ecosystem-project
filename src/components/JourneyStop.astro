@@ -1,0 +1,119 @@
+---
+interface Props {
+  variant: 'intake' | 'architect' | 'vigil';
+  phase: string;
+  name: string;
+  tag: string;
+  description: string;
+  href?: string;
+}
+
+const { variant, phase, name, tag, description, href } = Astro.props;
+---
+
+<div class:list={['stop', `stop--${variant}`]}>
+  {href ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" class="stop-dot stop-dot--link">
+      <slot />
+    </a>
+  ) : (
+    <div class="stop-dot">
+      <slot />
+    </div>
+  )}
+  <div class="stop-phase">{phase}</div>
+  <div class="stop-name">{name}</div>
+  <div class="stop-tag">{tag}</div>
+  <p class="stop-desc">{description}</p>
+</div>
+
+<style>
+  .stop {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 260px;
+    text-align: center;
+  }
+
+  .stop:nth-child(1) { margin-top: 0; }
+  .stop:nth-child(2) { margin-top: 80px; }
+  .stop:nth-child(3) { margin-top: 160px; }
+
+  .stop-dot {
+    width: 64px;
+    height: 64px;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    position: relative;
+    background: rgba(10, 10, 12, 0.9);
+  }
+
+  .stop-dot::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .stop-dot--link {
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .stop--intake .stop-dot--link:hover { border-color: rgba(237, 237, 237, 0.4); }
+  .stop--architect .stop-dot--link:hover { border-color: rgba(200, 90, 50, 0.5); }
+  .stop--vigil .stop-dot--link:hover { border-color: rgba(16, 185, 129, 0.5); }
+
+  .stop-phase {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.25);
+    margin-bottom: 6px;
+  }
+
+  .stop-name {
+    font-family: var(--f-head);
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .stop-tag {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+
+  .stop-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.55;
+    font-weight: 300;
+  }
+
+  /* Variant colors */
+  .stop--intake .stop-name { color: #ededed; }
+  .stop--intake .stop-dot { border-color: rgba(237, 237, 237, 0.2); }
+
+  .stop--architect .stop-name { color: #C85A32; }
+  .stop--architect .stop-dot { border-color: rgba(200, 90, 50, 0.25); }
+
+  .stop--vigil .stop-name { color: #10B981; }
+  .stop--vigil .stop-dot { border-color: rgba(16, 185, 129, 0.25); }
+
+  @media (max-width: 900px) {
+    .stop:nth-child(2),
+    .stop:nth-child(3) {
+      margin-top: 0;
+    }
+  }
+</style>
