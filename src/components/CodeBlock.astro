@@ -1,0 +1,106 @@
+---
+interface Props {
+  variant: 'dark' | 'warm' | 'green';
+  title: string;
+}
+
+const { variant, title } = Astro.props;
+---
+
+<div class:list={['code-block', `cb-${variant}`]}>
+  <div class="cb-header">{title}</div>
+  <div class="cb-body">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .code-block {
+    border: 2px solid;
+    overflow: hidden;
+  }
+
+  .cb-header {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border-bottom: 2px solid;
+  }
+
+  .cb-body {
+    font-family: var(--f-mono);
+    font-size: 12.5px;
+    line-height: 1.9;
+    padding: 18px;
+    overflow-x: auto;
+  }
+
+  .cb-body :global(.line) {
+    display: block;
+    white-space: pre;
+  }
+
+  /* ── Dark (intake) ── */
+  .cb-dark {
+    border-color: var(--intake-border);
+    background: var(--intake-code-bg);
+    box-shadow: 6px 6px 0 0 var(--intake-shadow);
+  }
+
+  .cb-dark .cb-header {
+    color: var(--intake-dim);
+    border-bottom-color: var(--intake-border);
+    background: var(--intake-code-header);
+  }
+
+  .cb-dark :global(.pr) { color: #5a5a66; }
+  .cb-dark :global(.cm) { color: #3a3a44; }
+  .cb-dark :global(.cmd) { color: #ededed; }
+  .cb-dark :global(.fl) { color: #9999a5; }
+  .cb-dark :global(.s) { color: #7e7e90; }
+  .cb-dark :global(.o) { color: #5a5a66; }
+
+  /* ── Warm (architect) ── */
+  .cb-warm {
+    border-color: var(--architect-ink);
+    background: var(--architect-code-bg);
+    box-shadow: 6px 6px 0 0 var(--architect-shadow);
+  }
+
+  .cb-warm .cb-header {
+    color: var(--architect-text);
+    border-bottom-color: var(--architect-ink);
+    background: var(--architect-code-header);
+  }
+
+  .cb-warm .cb-body { color: var(--architect-ink); }
+  .cb-warm :global(.pr) { color: #57534E; }
+  .cb-warm :global(.cm) { color: #a8a29e; }
+  .cb-warm :global(.cmd) { color: #C85A32; }
+  .cb-warm :global(.fl) { color: #292524; }
+  .cb-warm :global(.s) { color: #57534E; }
+  .cb-warm :global(.o) { color: #57534E; }
+
+  /* ── Green (vigil) ── */
+  .cb-green {
+    border-color: var(--vigil-ink);
+    background: var(--vigil-code-bg);
+    box-shadow: 4px 4px 0 0 var(--vigil-shadow);
+  }
+
+  .cb-green .cb-header {
+    color: var(--vigil-text);
+    border-bottom-color: var(--vigil-ink);
+    background: var(--vigil-code-header);
+  }
+
+  .cb-green .cb-body { color: var(--vigil-ink); }
+  .cb-green :global(.pr) { color: #10B981; }
+  .cb-green :global(.cm) { color: #86B89E; }
+  .cb-green :global(.cmd) { color: #10B981; }
+  .cb-green :global(.fl) { color: #022C22; }
+  .cb-green :global(.s) { color: #064E3B; }
+  .cb-green :global(.o) { color: #064E3B; }
+</style>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  description: string;
+}
+
+const { number, title, description } = Astro.props;
+---
+
+<div class="principle-card">
+  <div class="pc-number">{number}</div>
+  <h4>{title}</h4>
+  <p>{description}</p>
+</div>
+
+<style>
+  .principle-card {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 24px 20px;
+    transition: border-color 0.2s;
+  }
+
+  .principle-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .pc-number {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.25);
+    letter-spacing: 0.15em;
+    margin-bottom: 10px;
+  }
+
+  h4 {
+    font-family: var(--f-head);
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+</style>

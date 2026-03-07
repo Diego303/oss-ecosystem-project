@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>OSS Ecosystem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--f-head:'Space Grotesk',sans-serif;--f-body:'Inter',sans-serif;--f-mono:'JetBrains Mono',monospace}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-body);line-height:1.65;overflow-x:hidden;margin:0}
+.c{max-width:1100px;margin:0 auto;padding:0 28px}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,10,0.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.08)}
+.ni{max-width:1100px;margin:0 auto;padding:0 28px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.nl{font-family:var(--f-head);font-weight:700;font-size:15px;color:#ededed;letter-spacing:-0.02em}
+.nr{display:flex;gap:24px;align-items:center;list-style:none}
+.nr a{font-family:var(--f-mono);font-size:11px;color:rgba(255,255,255,0.5);text-decoration:none;text-transform:uppercase;letter-spacing:0.1em;transition:color .15s}
+.nr a:hover{color:#fff}
+.nr .cta{background:#ededed;color:#0a0a0a;padding:6px 16px;font-weight:500}
+.btn-h{font-family:var(--f-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;padding:12px 28px;cursor:pointer;text-decoration:none;font-weight:500;border:none;transition:opacity .15s}
+.btn-hw{background:#ededed;color:#0a0a0a}.btn-hw:hover{opacity:0.85}
+.btn-hg{background:transparent;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.15)}.btn-hg:hover{color:#fff;border-color:rgba(255,255,255,0.3)}
+
+/* ═══════════════════════════════════════
+   HERO — Journey / Roadmap
+   ═══════════════════════════════════════ */
+.hero{
+  background:#0a0a0c;color:#ededed;padding:130px 0 60px;
+  background-image:radial-gradient(ellipse 600px 400px at 50% 40%, rgba(200,90,50,0.04), transparent);
+}
+.hero-top{text-align:center;margin-bottom:64px}
+.hero-tag{font-family:var(--f-mono);font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:28px}
+.hero h1{font-family:var(--f-head);font-size:clamp(34px,5vw,56px);font-weight:700;letter-spacing:-0.04em;line-height:1.08;max-width:680px;margin:0 auto 20px}
+.hero h1 .v{color:#10B981}
+.hero-p{font-size:17px;color:rgba(255,255,255,0.5);max-width:500px;margin:0 auto 36px;font-weight:300;line-height:1.75}
+.hero-p strong{color:#ededed;font-weight:500}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+/* Journey map */
+.journey{position:relative;max-width:900px;margin:0 auto;padding:20px 0 40px}
+.journey-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
+
+.journey-stops{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2}
+.stop{display:flex;flex-direction:column;align-items:center;width:260px;text-align:center}
+.stop:nth-child(1){margin-top:0}
+.stop:nth-child(2){margin-top:80px}
+.stop:nth-child(3){margin-top:160px}
+
+.stop-dot{width:64px;height:64px;border:2px solid rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;margin-bottom:16px;position:relative;background:rgba(10,10,12,0.9)}
+.stop-dot::before{content:'';position:absolute;inset:-6px;border:1px solid rgba(255,255,255,0.04)}
+.stop-phase{font-family:var(--f-mono);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:6px}
+.stop-name{font-family:var(--f-head);font-size:20px;font-weight:700;margin-bottom:4px}
+.stop-tag{font-family:var(--f-mono);font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;margin-bottom:10px}
+.stop-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.55;font-weight:300}
+
+.stop--intake .stop-name{color:#ededed}
+.stop--intake .stop-dot{border-color:rgba(237,237,237,0.2)}
+.stop--architect .stop-name{color:#C85A32}
+.stop--architect .stop-dot{border-color:rgba(200,90,50,0.25)}
+.stop--vigil .stop-name{color:#10B981}
+.stop--vigil .stop-dot{border-color:rgba(16,185,129,0.25)}
+
+/* ═══ SHARED TOOL SECTIONS ═══ */
+.sec-intake{background:#050505;color:#ededed;padding:100px 0;border-top:2px solid #1f1f22;background-image:radial-gradient(ellipse 500px 300px at 25% 50%,rgba(237,237,237,0.02),transparent)}
+.sec-intake .tg{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.sec-intake .phase{font-family:var(--f-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#5a5a66;margin-bottom:8px}
+.sec-intake h3{font-family:var(--f-head);font-size:32px;font-weight:700;letter-spacing:-0.03em;color:#ededed;margin-bottom:6px}
+.sec-intake .sub{font-family:var(--f-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#5a5a66;margin-bottom:20px}
+.sec-intake p{font-size:15px;color:#9999a5;line-height:1.75;margin-bottom:14px;font-weight:300}
+.sec-intake .ft{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:7px}
+.sec-intake .ft li{font-family:var(--f-mono);font-size:12px;color:#9999a5;display:flex;align-items:center;gap:8px}
+.sec-intake .ft li::before{content:'◻';color:#ededed;font-size:8px}
+.cb-dark{border:2px solid #3f3f46;background:#0a0a0a;box-shadow:6px 6px 0 0 #1f1f22;overflow:hidden}
+.cb-dark .h{font-family:var(--f-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5a5a66;padding:10px 18px;border-bottom:2px solid #3f3f46;background:#0e0e0e}
+.cb-dark .b{font-family:var(--f-mono);font-size:12.5px;line-height:1.9;padding:18px;overflow-x:auto}
+.cb-dark .b .line{display:block;white-space:pre}
+.cb-dark .b .pr{color:#5a5a66}.cb-dark .b .cm{color:#3a3a44}.cb-dark .b .cmd{color:#ededed}.cb-dark .b .fl{color:#9999a5}.cb-dark .b .s{color:#7e7e90}.cb-dark .b .o{color:#5a5a66}
+
+.sec-architect{background:#FDFBF7;color:#292524;padding:100px 0;border-top:2px solid #292524;background-image:radial-gradient(ellipse 500px 300px at 75% 50%,rgba(200,90,50,0.04),transparent)}
+.sec-architect .tg{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;direction:rtl}
+.sec-architect .tg>*{direction:ltr}
+.sec-architect .phase{font-family:var(--f-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#57534E;margin-bottom:8px}
+.sec-architect h3{font-family:var(--f-head);font-size:32px;font-weight:700;letter-spacing:-0.03em;color:#C85A32;margin-bottom:6px}
+.sec-architect .sub{font-family:var(--f-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#C85A32;margin-bottom:20px}
+.sec-architect p{font-size:15px;color:#57534E;line-height:1.75;margin-bottom:14px;font-weight:300}
+.sec-architect .ft{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:7px}
+.sec-architect .ft li{font-family:var(--f-mono);font-size:12px;color:#57534E;display:flex;align-items:center;gap:8px}
+.sec-architect .ft li::before{content:'△';color:#C85A32;font-size:10px}
+.cb-warm{border:2px solid #292524;background:#FFFFFF;box-shadow:6px 6px 0 0 #292524;overflow:hidden}
+.cb-warm .h{font-family:var(--f-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#57534E;padding:10px 18px;border-bottom:2px solid #292524;background:#F3EFE6}
+.cb-warm .b{font-family:var(--f-mono);font-size:12.5px;line-height:1.9;padding:18px;overflow-x:auto;color:#292524}
+.cb-warm .b .line{display:block;white-space:pre}
+.cb-warm .b .pr{color:#57534E}.cb-warm .b .cm{color:#a8a29e}.cb-warm .b .cmd{color:#C85A32}.cb-warm .b .fl{color:#292524}.cb-warm .b .s{color:#57534E}.cb-warm .b .o{color:#57534E}
+
+.sec-vigil{background:#F4F7F5;color:#022C22;padding:100px 0;border-top:2px solid #022C22;background-image:radial-gradient(ellipse 500px 300px at 25% 50%,rgba(16,185,129,0.04),transparent)}
+.sec-vigil .tg{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.sec-vigil .phase{font-family:var(--f-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#064E3B;margin-bottom:8px}
+.sec-vigil h3{font-family:var(--f-head);font-size:32px;font-weight:700;letter-spacing:-0.03em;color:#064E3B;margin-bottom:6px}
+.sec-vigil .sub{font-family:var(--f-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#10B981;margin-bottom:20px}
+.sec-vigil p{font-size:15px;color:#064E3B;line-height:1.75;margin-bottom:14px;font-weight:300}
+.sec-vigil .ft{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:7px}
+.sec-vigil .ft li{font-family:var(--f-mono);font-size:12px;color:#064E3B;display:flex;align-items:center;gap:8px}
+.sec-vigil .ft li::before{content:'◇';color:#10B981;font-size:10px}
+.cb-green{border:2px solid #022C22;background:#FFFFFF;box-shadow:4px 4px 0 0 #022C22;overflow:hidden}
+.cb-green .h{font-family:var(--f-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#064E3B;padding:10px 18px;border-bottom:2px solid #022C22;background:#E8F0EB}
+.cb-green .b{font-family:var(--f-mono);font-size:12.5px;line-height:1.9;padding:18px;overflow-x:auto;color:#022C22}
+.cb-green .b .line{display:block;white-space:pre}
+.cb-green .b .pr{color:#10B981}.cb-green .b .cm{color:#86B89E}.cb-green .b .cmd{color:#10B981}.cb-green .b .fl{color:#022C22}.cb-green .b .s{color:#064E3B}.cb-green .b .o{color:#064E3B}
+
+.sec-full{background:#0a0a0c;color:#ededed;padding:100px 0;border-top:1px solid rgba(255,255,255,0.08)}
+.sec-full .sh{text-align:center;margin-bottom:48px}
+.sec-full .sh-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px}
+.sec-full .sh h2{font-family:var(--f-head);font-size:clamp(26px,3.5vw,38px);font-weight:700;letter-spacing:-0.03em;margin-bottom:12px}
+.sec-full .sh p{color:rgba(255,255,255,0.45);font-size:15px;max-width:460px;margin:0 auto;font-weight:300}
+.fc{max-width:680px;margin:0 auto}
+
+.sec-princ{background:#111114;color:#ededed;padding:80px 0;border-top:1px solid rgba(255,255,255,0.06)}
+.sec-princ .sh{text-align:center;margin-bottom:48px}
+.sec-princ .sh-tag{font-family:var(--f-mono);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px}
+.sec-princ .sh h2{font-family:var(--f-head);font-size:clamp(26px,3.5vw,36px);font-weight:700;letter-spacing:-0.03em}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pc{border:1px solid rgba(255,255,255,0.08);padding:24px 20px;transition:border-color .2s}
+.pc:hover{border-color:rgba(255,255,255,0.15)}
+.pc .n{font-family:var(--f-mono);font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:0.15em;margin-bottom:10px}
+.pc h4{font-family:var(--f-head);font-size:15px;font-weight:600;margin-bottom:6px}
+.pc p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;font-weight:300}
+
+.sec-cta{background:#0a0a0c;color:#ededed;padding:100px 0;border-top:1px solid rgba(255,255,255,0.06);text-align:center}
+.sec-cta h2{font-family:var(--f-head);font-size:clamp(26px,3.5vw,40px);font-weight:700;letter-spacing:-0.03em;margin-bottom:16px}
+.sec-cta p{font-size:15px;color:rgba(255,255,255,0.45);max-width:440px;margin:0 auto 32px;font-weight:300}
+.sec-cta .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+footer{background:#0a0a0c;border-top:1px solid rgba(255,255,255,0.06);padding:28px 0}
+.fi{max-width:1100px;margin:0 auto;padding:0 28px;display:flex;justify-content:space-between;align-items:center}
+.fi-l{font-family:var(--f-mono);font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.08em}
+.fi-r{display:flex;gap:20px;list-style:none}
+.fi-r a{font-family:var(--f-mono);font-size:10px;color:rgba(255,255,255,0.2);text-decoration:none;text-transform:uppercase;letter-spacing:0.08em}
+.fi-r a:hover{color:rgba(255,255,255,0.5)}
+
+@media(max-width:900px){
+  .journey-stops{flex-direction:column;align-items:center;gap:32px}
+  .stop:nth-child(2),.stop:nth-child(3){margin-top:0}
+  .journey-svg{display:none}
+  .sec-intake .tg,.sec-architect .tg,.sec-vigil .tg{grid-template-columns:1fr;gap:32px}
+  .sec-architect .tg{direction:ltr}
+  .pg{grid-template-columns:1fr}
+  .nr a:not(.cta){display:none}
+}
+@media(max-width:600px){
+  .hero{padding:110px 0 40px}
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .btn-h{text-align:center}
+  .fi{flex-direction:column;gap:16px;text-align:center}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-top,.journey{animation:fadeUp .5s ease-out both}
+.journey{animation-delay:.15s}
+@keyframes drawPath{to{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+
+<nav><div class="ni">
+  <div class="nl">OSS Ecosystem</div>
+  <ul class="nr"><li><a href="#sec-i">intake</a></li><li><a href="#sec-a">architect</a></li><li><a href="#sec-v">vigil</a></li><li><a href="#cta" class="cta">Empezar</a></li></ul>
+</div></nav>
+
+<!-- HERO — Journey roadmap -->
+<section class="hero">
+  <div class="c">
+    <div class="hero-top">
+      <div class="hero-tag">Open Source · CLI-First · Backend-Agnóstico</div>
+      <h1>De requisitos caóticos a código <span class="v">verificado</span></h1>
+      <p class="hero-p">Tres herramientas CLI. Un pipeline que cubre toda la cadena — desde la idea hasta código seguro en producción.</p>
+      <div class="hero-btns">
+        <a href="#sec-i" class="btn-h btn-hw">Explorar herramientas</a>
+        <a href="#" class="btn-h btn-hg">GitHub</a>
+      </div>
+    </div>
+
+    <!-- Journey roadmap with dynamic curved path -->
+    <div class="journey">
+      <svg class="journey-svg" id="journeySvg">
+        <defs>
+          <linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ededed"/>
+            <stop offset="50%" stop-color="#C85A32"/>
+            <stop offset="100%" stop-color="#10B981"/>
+          </linearGradient>
+        </defs>
+        <path id="pathDash" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" stroke-dasharray="6 6"/>
+        <path id="pathGlow" fill="none" stroke="url(#pathGrad)" stroke-width="2" opacity="0.45" class="journey-line"/>
+        <!-- Traveling dots container -->
+        <g id="dotsContainer"></g>
+      </svg>
+
+      <div class="journey-stops">
+        <div class="stop stop--intake">
+          <div class="stop-dot">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" stroke="#ededed" stroke-width="2" fill="none"/></svg>
+          </div>
+          <div class="stop-phase">Fase 01</div>
+          <div class="stop-name">intake</div>
+          <div class="stop-tag">Captura y normaliza</div>
+          <p class="stop-desc">De Jira, PDFs, Slack o una frase — a una spec YAML ejecutable para cualquier agente.</p>
+        </div>
+
+        <div class="stop stop--architect">
+          <div class="stop-dot">
+            <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><polygon points="20,4 38,36 2,36" stroke="#C85A32" stroke-width="2" fill="none"/></svg>
+          </div>
+          <div class="stop-phase">Fase 02</div>
+          <div class="stop-name">architect</div>
+          <div class="stop-tag">Implementa con control</div>
+          <p class="stop-desc">Agentes de IA con guardrails deterministas, budget limits, y audit trail. Backend-agnóstico.</p>
+        </div>
+
+        <div class="stop stop--vigil">
+          <div class="stop-dot">
+            <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><polygon points="20,2 38,20 20,38 2,20" stroke="#10B981" stroke-width="2" fill="none"/></svg>
+          </div>
+          <div class="stop-phase">Fase 03</div>
+          <div class="stop-name">vigil</div>
+          <div class="stop-tag">Verifica y protege</div>
+          <p class="stop-desc">Detecta vulnerabilidades exclusivas de código IA: alucinaciones, slopsquatting, over-permissions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTAKE --><section class="sec-intake" id="sec-i"><div class="c"><div class="tg"><div><div class="phase">◻ Fase 01 — Preparación</div><h3>intake</h3><div class="sub">De requisitos caóticos a spec ejecutable</div><p>Captura de Jira, PDFs, Confluence, Slack, o lenguaje natural. Normaliza, deduplica, detecta conflictos, genera spec YAML.</p><p>No genera código. Es infraestructura de preparación.</p><ul class="ft"><li>Multi-source: Jira, PDFs, Slack, imágenes</li><li>Deduplicación y detección de conflictos</li><li>Output YAML universal</li><li>Trazabilidad completa</li></ul></div><div class="cb-dark"><div class="h">Terminal — intake collect</div><div class="b"><span class="line"><span class="cm"># Captura desde múltiples fuentes</span></span><span class="line"><span class="pr">$ </span><span class="cmd">intake</span> <span class="fl">collect</span></span><span class="line"><span class="fl">  --from</span> <span class="s">jira:PROJ-123</span></span><span class="line"><span class="fl">  --from</span> <span class="s">pdf:specs/req.pdf</span></span><span class="line"><span class="fl">  --from</span> <span class="s">slack:#dev</span></span><span class="line"></span><span class="line"><span class="o">  ◻ 14 requisitos · 2 conflictos</span></span><span class="line"><span class="o">  ◻ Spec → .intake/spec.yaml</span></span></div></div></div></div></section>
+<!-- ARCHITECT --><section class="sec-architect" id="sec-a"><div class="c"><div class="tg"><div><div class="phase">△ Fase 02 — Implementación</div><h3>architect</h3><div class="sub">Control determinista para agentes de código</div><p>Guardrails que el LLM no puede saltarse. Backend-agnóstico. Cambia de modelo sin cambiar tus pipelines.</p><ul class="ft"><li>Ralph Loop: iteración con verificación</li><li>Archivos protegidos, budget limits</li><li>100+ proveedores, zero lock-in</li><li>OWASP nativa, OpenTelemetry</li></ul></div><div class="cb-warm"><div class="h">Figura 03 — architect loop</div><div class="b"><span class="line"><span class="pr">$ </span><span class="cmd">architect</span> <span class="fl">loop</span> <span class="s">"Módulo de pagos"</span></span><span class="line"><span class="fl">  --check</span> <span class="s">"pytest tests/ -q"</span></span><span class="line"><span class="fl">  --check</span> <span class="s">"vigil scan src/"</span></span><span class="line"><span class="fl">  --budget</span> <span class="s">$2.00</span></span><span class="line"></span><span class="line"><span class="o">  △ Loop 3/10</span></span><span class="line"><span class="o">  ✓ 18/18 passed · $0.089</span></span></div></div></div></div></section>
+<!-- VIGIL --><section class="sec-vigil" id="sec-v"><div class="c"><div class="tg"><div><div class="phase">◇ Fase 03 — Verificación</div><h3>vigil</h3><div class="sub">Security scanner para código IA</div><p>Detecta dependencias alucinadas, slopsquatting, over-permissions, tests vacíos. Determinista, sin LLMs.</p><ul class="ft"><li>Dependencias fantasma en registries</li><li>Typosquatting y slopsquatting</li><li>Tests: asserts vacíos, coverage falso</li><li>Quality gate para CI/CD</li></ul></div><div class="cb-green"><div class="h">Terminal — vigil scan</div><div class="b"><span class="line"><span class="pr">$ </span><span class="cmd">vigil</span> <span class="fl">scan</span> <span class="s">src/</span></span><span class="line"></span><span class="line"><span class="o">  ◇ 47 archivos...</span></span><span class="line" style="color:#EF4444">  ✗ DEP-001 flask-helper (alucinada)</span><span class="line" style="color:#EF4444">  ✗ SEC-003 CORS disabled</span><span class="line" style="color:#10B981">  ✓ 45/47 limpios</span></div></div></div></div></section>
+<!-- PIPELINE --><section class="sec-full"><div class="c"><div class="sh"><div class="sh-tag">// Pipeline completo</div><h2>Tres comandos. Cero supervisión.</h2><p>De ticket a PR verificado. Headless, auditable.</p></div><div class="fc cb-dark"><div class="h">pipeline.sh</div><div class="b" style="line-height:2"><span class="line"><span class="cm">#!/bin/bash</span></span><span class="line"></span><span class="line"><span class="cmd">intake</span> <span class="fl">collect --from</span> <span class="s">jira:SPRINT-42</span> <span class="fl">--out</span> <span class="s">spec.yaml</span></span><span class="line"></span><span class="line"><span class="cmd" style="color:#C85A32">architect</span> <span class="fl">loop</span> <span class="s">"Implementa spec.yaml"</span> <span class="fl">\</span></span><span class="line">  <span class="fl">--check</span> <span class="s">"pytest && vigil scan src/"</span></span><span class="line"></span><span class="line"><span class="cmd" style="color:#10B981">vigil</span> <span class="fl">scan src/ --format junit</span></span></div></div></div></section>
+<!-- PRINCIPLES --><section class="sec-princ"><div class="c"><div class="sh"><div class="sh-tag">// Principios</div><h2>Construido sobre convicciones</h2></div><div class="pg"><div class="pc"><div class="n">01</div><h4>CLI-first</h4><p>Si no cabe en un script, no sirve para CI/CD.</p></div><div class="pc"><div class="n">02</div><h4>Determinismo</h4><p>El LLM no puede saltarse tests ni quality gates.</p></div><div class="pc"><div class="n">03</div><h4>Zero lock-in</h4><p>Cambia de modelo sin tocar tu pipeline.</p></div><div class="pc"><div class="n">04</div><h4>Open source</h4><p>Código auditable que gobierna tu código.</p></div><div class="pc"><div class="n">05</div><h4>Headless-first</h4><p>Funciona a las 3am sin supervisión.</p></div><div class="pc"><div class="n">06</div><h4>Complementa</h4><p>Cubrimos gaps que otros no ven.</p></div></div></div></section>
+<section class="sec-cta" id="cta"><div class="c"><h2>Tu pipeline de IA, bajo control</h2><p>Instala y ejecuta tu primer pipeline con garantías.</p><div class="btns"><a href="#" class="btn-h btn-hw">Documentación</a><a href="#" class="btn-h btn-hg">GitHub</a></div></div></section>
+<footer><div class="fi"><div class="fi-l">&copy; 2025 OSS Ecosystem — intake · architect · vigil</div><ul class="fi-r"><li><a href="#">Docs</a></li><li><a href="#">GitHub</a></li><li><a href="#">Discord</a></li></ul></div></footer>
+<script>
+function lerpColor(a, b, t) {
+  const ah = parseInt(a.slice(1), 16), bh = parseInt(b.slice(1), 16);
+  const ar = ah >> 16, ag = (ah >> 8) & 0xff, ab = ah & 0xff;
+  const br = bh >> 16, bg = (bh >> 8) & 0xff, bb = bh & 0xff;
+  return `rgb(${Math.round(ar + (br - ar) * t)},${Math.round(ag + (bg - ag) * t)},${Math.round(ab + (bb - ab) * t)})`;
+}
+
+function getPathColor(t) {
+  if (t <= 0.5) return lerpColor('#ededed', '#C85A32', t * 2);
+  return lerpColor('#C85A32', '#10B981', (t - 0.5) * 2);
+}
+
+function easeInOut(t) {
+  return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+}
+
+let pathRef = null;
+let dotsStarted = false;
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+// Each active dot: { outer, inner, startTime, duration, speed }
+const activeDots = [];
+
+function drawJourneyPath() {
+  const journey = document.querySelector('.journey');
+  const dots = document.querySelectorAll('.stop-dot');
+  const svg = document.getElementById('journeySvg');
+  const pathDash = document.getElementById('pathDash');
+  const pathGlow = document.getElementById('pathGlow');
+  if (!journey || dots.length < 3 || !svg) return;
+
+  const jRect = journey.getBoundingClientRect();
+  const centers = Array.from(dots).map(dot => {
+    const r = dot.getBoundingClientRect();
+    return { x: r.left + r.width / 2 - jRect.left, y: r.top + r.height / 2 - jRect.top };
+  });
+
+  const [a, b, c] = centers;
+  const cp1x = a.x + (b.x - a.x) * 0.55, cp1y = a.y;
+  const cp2x = a.x + (b.x - a.x) * 0.45, cp2y = b.y;
+  const cp3x = b.x + (c.x - b.x) * 0.55, cp3y = b.y;
+  const cp4x = b.x + (c.x - b.x) * 0.45, cp4y = c.y;
+  const d = `M ${a.x} ${a.y} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${b.x} ${b.y} C ${cp3x} ${cp3y}, ${cp4x} ${cp4y}, ${c.x} ${c.y}`;
+
+  pathDash.setAttribute('d', d);
+  pathGlow.setAttribute('d', d);
+
+  const len = pathGlow.getTotalLength();
+  pathGlow.style.strokeDasharray = len;
+  pathGlow.style.strokeDashoffset = len;
+  pathGlow.style.animation = 'none';
+  pathGlow.offsetHeight;
+  pathGlow.style.animation = 'drawPath 1.5s ease-out 0.3s forwards';
+
+  pathRef = pathGlow;
+
+  if (!dotsStarted) {
+    dotsStarted = true;
+    setTimeout(() => {
+      startDotLoop();
+      requestAnimationFrame(animateAllDots);
+    }, 1800);
+  }
+}
+
+function spawnDot() {
+  if (!pathRef) return;
+  const container = document.getElementById('dotsContainer');
+  const defs = document.querySelector('#journeySvg defs');
+
+  // Varying speed: 3.5s to 5.5s per trip
+  const duration = 3500 + Math.random() * 2000;
+  const outerR = 10 + Math.random() * 5;
+  const innerR = 2.5 + Math.random() * 1.5;
+  const id = 'dg' + Math.random().toString(36).slice(2, 8);
+
+  // Per-dot radial gradient
+  const grad = document.createElementNS(SVG_NS, 'radialGradient');
+  grad.setAttribute('id', id);
+  const s1 = document.createElementNS(SVG_NS, 'stop');
+  s1.setAttribute('offset', '0%'); s1.setAttribute('stop-color', '#ededed'); s1.setAttribute('stop-opacity', '0.9');
+  const s2 = document.createElementNS(SVG_NS, 'stop');
+  s2.setAttribute('offset', '40%'); s2.setAttribute('stop-color', '#ededed'); s2.setAttribute('stop-opacity', '0.3');
+  const s3 = document.createElementNS(SVG_NS, 'stop');
+  s3.setAttribute('offset', '100%'); s3.setAttribute('stop-color', '#ededed'); s3.setAttribute('stop-opacity', '0');
+  grad.appendChild(s1); grad.appendChild(s2); grad.appendChild(s3);
+  defs.appendChild(grad);
+
+  const outer = document.createElementNS(SVG_NS, 'circle');
+  outer.setAttribute('r', outerR);
+  outer.setAttribute('fill', `url(#${id})`);
+  outer.setAttribute('opacity', '0');
+
+  const inner = document.createElementNS(SVG_NS, 'circle');
+  inner.setAttribute('r', innerR);
+  inner.setAttribute('fill', '#ededed');
+  inner.setAttribute('opacity', '0');
+
+  container.appendChild(outer);
+  container.appendChild(inner);
+
+  activeDots.push({
+    outer, inner, grad, glowStops: grad.querySelectorAll('stop'),
+    startTime: performance.now(), duration
+  });
+}
+
+function startDotLoop() {
+  // Spawn first dot immediately
+  spawnDot();
+
+  function scheduleNext() {
+    // Random interval: 1.2s to 3s between spawns
+    const delay = 1200 + Math.random() * 1800;
+    setTimeout(() => {
+      // Cap at 3 simultaneous dots
+      if (activeDots.length < 3) {
+        spawnDot();
+      }
+      scheduleNext();
+    }, delay);
+  }
+  scheduleNext();
+}
+
+function animateAllDots(timestamp) {
+  for (let i = activeDots.length - 1; i >= 0; i--) {
+    const dot = activeDots[i];
+    const elapsed = timestamp - dot.startTime;
+    const rawT = elapsed / dot.duration;
+
+    if (rawT > 1.15) {
+      // Done — remove from DOM and array
+      dot.outer.remove();
+      dot.inner.remove();
+      dot.grad.remove();
+      activeDots.splice(i, 1);
+      continue;
+    }
+
+    const t = Math.min(rawT, 1);
+    const eased = easeInOut(t);
+
+    try {
+      const len = pathRef.getTotalLength();
+      const point = pathRef.getPointAtLength(eased * len);
+      const color = getPathColor(eased);
+
+      dot.outer.setAttribute('cx', point.x);
+      dot.outer.setAttribute('cy', point.y);
+      dot.inner.setAttribute('cx', point.x);
+      dot.inner.setAttribute('cy', point.y);
+      dot.inner.setAttribute('fill', color);
+
+      // Update this dot's glow color (shared gradient — last writer wins, fine for visual)
+      dot.glowStops.forEach(stop => {
+        if (parseFloat(stop.getAttribute('stop-opacity') || 0) > 0)
+          stop.setAttribute('stop-color', color);
+      });
+
+      // Fade in/out at edges
+      let opacity = 1;
+      if (t < 0.06) opacity = t / 0.06;
+      else if (t > 0.9) opacity = Math.max(0, (1 - t) / 0.1);
+      if (rawT > 1) opacity = Math.max(0, 1 - (rawT - 1) / 0.15);
+
+      dot.outer.setAttribute('opacity', opacity);
+      dot.inner.setAttribute('opacity', opacity);
+    } catch (e) {}
+  }
+
+  requestAnimationFrame(animateAllDots);
+}
+
+window.addEventListener('load', drawJourneyPath);
+window.addEventListener('resize', drawJourneyPath);
+</script>
+</body>
+</html>

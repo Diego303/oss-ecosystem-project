@@ -1,0 +1,11 @@
+---
+interface Props {
+  size?: number;
+  color?: string;
+}
+const { size = 22, color = '#C85A32' } = Astro.props;
+---
+
+<svg width={size} height={size} viewBox="0 0 40 40" fill="none">
+  <polygon points="20,4 38,36 2,36" stroke={color} stroke-width="2" fill="none" />
+</svg>
