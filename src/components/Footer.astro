@@ -1,9 +1,17 @@
 ---
+import { type Lang, getTranslations } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = getTranslations(lang);
 ---
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-text">&copy; 2026 OSS Ecosystem. Creado con claude code</div>
+    <div class="footer-text">{t.footer.text}</div>
   </div>
 </footer>
 

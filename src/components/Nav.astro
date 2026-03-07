@@ -1,4 +1,13 @@
 ---
+import { type Lang, getTranslations } from '../i18n/translations';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'es' } = Astro.props;
+const t = getTranslations(lang);
+const base = import.meta.env.BASE_URL;
 ---
 
 <nav>
@@ -8,7 +17,20 @@
       <li><a href="#sec-i">intake</a></li>
       <li><a href="#sec-a">architect</a></li>
       <li><a href="#sec-v">vigil</a></li>
-      <li><a href="#cta" class="cta">Empezar</a></li>
+      <li><a href="#cta" class="cta">{t.nav.cta}</a></li>
+      <li class="lang-switch">
+        {lang === 'es' ? (
+          <span class="lang-active">ES</span>
+        ) : (
+          <a href={base} class="lang-link">ES</a>
+        )}
+        <span class="lang-sep">|</span>
+        {lang === 'en' ? (
+          <span class="lang-active">EN</span>
+        ) : (
+          <a href={`${base}en/`} class="lang-link">EN</a>
+        )}
+      </li>
     </ul>
   </div>
 </nav>
@@ -71,8 +93,41 @@
     font-weight: 500;
   }
 
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  .lang-sep {
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .lang-active {
+    color: #ededed;
+    font-weight: 500;
+  }
+
+  .lang-link {
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .lang-link:hover {
+    color: #fff;
+  }
+
   @media (max-width: 900px) {
-    .nav-links a:not(.cta) {
+    .nav-links a:not(.cta),
+    .nav-links a:not(.lang-link) {
+      /* Keep CTA and lang switcher visible */
+    }
+
+    .nav-links > li:not(:nth-last-child(-n+2)) {
       display: none;
     }
   }
