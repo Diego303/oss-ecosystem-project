@@ -14,11 +14,13 @@ interface Translations {
     titleAccent: string;
     subtitle: string;
     cta: string;
+    licitFrameLabel: string;
   };
   journey: {
     intake: { phase: string; tag: string; description: string };
     architect: { phase: string; tag: string; description: string };
     vigil: { phase: string; tag: string; description: string };
+    licit: { phase: string; tag: string; description: string };
   };
   intake: {
     phase: string;
@@ -48,6 +50,24 @@ interface Translations {
     codeTitle: string;
     code: { output1: string; error1: string; error2: string; ok: string };
   };
+  licit: {
+    phase: string;
+    subtitle: string;
+    p1: string;
+    p2: string;
+    features: string[];
+    docBtn: string;
+    codeTitle: string;
+    code: {
+      comment: string;
+      initOutput1: string;
+      initOutput2: string;
+      traceOutput: string;
+      verifyOutput1: string;
+      verifyOutput2: string;
+      verifyStatus: string;
+    };
+  };
   pipeline: {
     tag: string;
     title: string;
@@ -76,8 +96,9 @@ const translations: Record<Lang, Translations> = {
       titleStart: 'De requisitos caoticos a codigo ',
       titleAccent: 'verificado',
       subtitle:
-        'Tres herramientas CLI. Un pipeline que cubre toda la cadena \u2014 desde la idea hasta codigo seguro en produccion.',
+        'Cuatro herramientas CLI. Un pipeline que cubre toda la cadena \u2014 desde la idea hasta codigo seguro, verificado, y regulatoriamente conforme.',
       cta: 'Explorar herramientas',
+      licitFrameLabel: 'Compliance & Provenance Layer',
     },
     journey: {
       intake: {
@@ -97,6 +118,12 @@ const translations: Record<Lang, Translations> = {
         tag: 'Verifica y protege',
         description:
           'Detecta vulnerabilidades exclusivas de codigo IA: alucinaciones, slopsquatting, over-permissions.',
+      },
+      licit: {
+        phase: 'Capa transversal',
+        tag: 'AI Compliance',
+        description:
+          'Provenance, EU AI Act, OWASP. Evalua todo el pipeline.',
       },
     },
     intake: {
@@ -155,10 +182,34 @@ const translations: Record<Lang, Translations> = {
         ok: '  \u2713 45/47 limpios',
       },
     },
+    licit: {
+      phase: '\u2B21 Capa transversal \u2014 Compliance',
+      subtitle: 'AI Compliance & Provenance Toolkit',
+      p1: 'Rastrea el origen del codigo (humano vs. IA), evalua cumplimiento contra el EU AI Act y OWASP Agentic Top 10, y genera la documentacion regulatoria requerida automaticamente.',
+      p2: 'Funciona como gate de CI/CD. Standalone \u2014 los conectores a architect y vigil son opcionales.',
+      features: [
+        'Provenance tracking: origen humano vs. IA por commit',
+        'EU AI Act: FRIA, Annex IV, evaluacion articulo por articulo',
+        'OWASP Agentic Top 10: evaluacion de seguridad agentica',
+        'Gap analysis con recomendaciones accionables',
+        'CI/CD gate: exit code 0 (compliant) o 1 (non-compliant)',
+      ],
+      docBtn: 'Ir a documentacion',
+      codeTitle: 'Terminal \u2014 licit',
+      code: {
+        comment: '# Inicializa y analiza compliance',
+        initOutput1: '  \u2B21 Detected: Python/FastAPI \u00B7 Git: 847 commits',
+        initOutput2: '  \u2B21 Agent configs: CLAUDE.md, .cursorrules',
+        traceOutput: '  \u2B21 Provenance: 62% human \u00B7 38% AI-assisted',
+        verifyOutput1: '  \u2B21 EU AI Act: 8/12 requirements met',
+        verifyOutput2: '  \u2B21 OWASP Agentic: 7/10 controls passed',
+        verifyStatus: '  \u2B21 Status: NON-COMPLIANT \u00B7 4 gaps found',
+      },
+    },
     pipeline: {
       tag: '// Pipeline completo',
-      title: 'Tres comandos. Cero supervision.',
-      subtitle: 'De ticket a PR verificado. Headless, auditable.',
+      title: 'Cuatro comandos. Cero supervision.',
+      subtitle: 'De ticket a PR verificado y regulatoriamente conforme.',
       codeTitle: 'pipeline.sh',
       code: { arg: 'Implementa spec.yaml' },
     },
@@ -171,15 +222,15 @@ const translations: Record<Lang, Translations> = {
         { number: '03', title: 'Zero lock-in', description: 'Cambia de modelo sin tocar tu pipeline.' },
         { number: '04', title: 'Open source', description: 'Codigo auditable que gobierna tu codigo.' },
         { number: '05', title: 'Headless-first', description: 'Funciona a las 3am sin supervision.' },
-        { number: '06', title: 'Complementa', description: 'Cubrimos gaps que otros no ven.' },
+        { number: '06', title: 'Compliance-native', description: 'La regulacion no es un afterthought. Es parte del pipeline.' },
       ],
     },
     cta: {
       title: 'Tu pipeline de IA, bajo control',
-      subtitle: 'Instala y ejecuta tu primer pipeline con garantias.',
+      subtitle: 'Instala y ejecuta tu primer pipeline con garantias tecnicas y regulatorias.',
       btn: 'Documentacion',
     },
-    footer: { text: '\u00A9 2026 OSS Ecosystem. Creado con claude code' },
+    footer: { text: '\u00A9 2026 OSS Ecosystem \u2014 intake \u00B7 architect \u00B7 vigil \u00B7 licit' },
   },
 
   en: {
@@ -189,8 +240,9 @@ const translations: Record<Lang, Translations> = {
       titleStart: 'From chaotic requirements to ',
       titleAccent: 'verified code',
       subtitle:
-        'Three CLI tools. One pipeline covering the entire chain \u2014 from idea to secure code in production.',
+        'Four CLI tools. One pipeline covering the entire chain \u2014 from idea to secure, verified, and regulatorily compliant code.',
       cta: 'Explore tools',
+      licitFrameLabel: 'Compliance & Provenance Layer',
     },
     journey: {
       intake: {
@@ -210,6 +262,12 @@ const translations: Record<Lang, Translations> = {
         tag: 'Verify and protect',
         description:
           'Detects AI-code vulnerabilities: hallucinations, slopsquatting, over-permissions.',
+      },
+      licit: {
+        phase: 'Cross-cutting layer',
+        tag: 'AI Compliance',
+        description:
+          'Provenance, EU AI Act, OWASP. Evaluates the entire pipeline.',
       },
     },
     intake: {
@@ -268,10 +326,34 @@ const translations: Record<Lang, Translations> = {
         ok: '  \u2713 45/47 clean',
       },
     },
+    licit: {
+      phase: '\u2B21 Cross-cutting layer \u2014 Compliance',
+      subtitle: 'AI Compliance & Provenance Toolkit',
+      p1: 'Tracks code origin (human vs. AI), evaluates compliance against the EU AI Act and OWASP Agentic Top 10, and automatically generates required regulatory documentation.',
+      p2: 'Works as a CI/CD gate. Standalone \u2014 connectors to architect and vigil are optional.',
+      features: [
+        'Provenance tracking: human vs. AI origin per commit',
+        'EU AI Act: FRIA, Annex IV, article-by-article evaluation',
+        'OWASP Agentic Top 10: agentic security evaluation',
+        'Gap analysis with actionable recommendations',
+        'CI/CD gate: exit code 0 (compliant) or 1 (non-compliant)',
+      ],
+      docBtn: 'Go to documentation',
+      codeTitle: 'Terminal \u2014 licit',
+      code: {
+        comment: '# Initialize and analyze compliance',
+        initOutput1: '  \u2B21 Detected: Python/FastAPI \u00B7 Git: 847 commits',
+        initOutput2: '  \u2B21 Agent configs: CLAUDE.md, .cursorrules',
+        traceOutput: '  \u2B21 Provenance: 62% human \u00B7 38% AI-assisted',
+        verifyOutput1: '  \u2B21 EU AI Act: 8/12 requirements met',
+        verifyOutput2: '  \u2B21 OWASP Agentic: 7/10 controls passed',
+        verifyStatus: '  \u2B21 Status: NON-COMPLIANT \u00B7 4 gaps found',
+      },
+    },
     pipeline: {
       tag: '// Full Pipeline',
-      title: 'Three commands. Zero supervision.',
-      subtitle: 'From ticket to verified PR. Headless, auditable.',
+      title: 'Four commands. Zero supervision.',
+      subtitle: 'From ticket to verified and regulatorily compliant PR.',
       codeTitle: 'pipeline.sh',
       code: { arg: 'Implement spec.yaml' },
     },
@@ -284,15 +366,15 @@ const translations: Record<Lang, Translations> = {
         { number: '03', title: 'Zero lock-in', description: 'Switch models without touching your pipeline.' },
         { number: '04', title: 'Open source', description: 'Auditable code that governs your code.' },
         { number: '05', title: 'Headless-first', description: 'Works at 3am without supervision.' },
-        { number: '06', title: 'Complements', description: "We cover gaps others don't see." },
+        { number: '06', title: 'Compliance-native', description: "Regulation isn't an afterthought. It's part of the pipeline." },
       ],
     },
     cta: {
       title: 'Your AI pipeline, under control',
-      subtitle: 'Install and run your first pipeline with guarantees.',
+      subtitle: 'Install and run your first pipeline with technical and regulatory guarantees.',
       btn: 'Documentation',
     },
-    footer: { text: '\u00A9 2026 OSS Ecosystem. Built with claude code' },
+    footer: { text: '\u00A9 2026 OSS Ecosystem \u2014 intake \u00B7 architect \u00B7 vigil \u00B7 licit' },
   },
 };
 

@@ -55,6 +55,16 @@
   --vigil-code-header: #E8F0EB;
   --vigil-shadow: #022C22;
   --vigil-alert: #EF4444;
+
+  /* licit */
+  --licit-bg: #FFFFFF;
+  --licit-accent: #FF0000;
+  --licit-ink: #000000;
+  --licit-text: #444444;
+  --licit-border: #000000;
+  --licit-code-bg: #F7F7F7;
+  --licit-code-header: #FFFFFF;
+  --licit-shadow: #000000;
 }
 
 html {

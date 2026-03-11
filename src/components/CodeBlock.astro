@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant: 'dark' | 'warm' | 'green';
+  variant: 'dark' | 'warm' | 'green' | 'white';
   title: string;
 }
 
@@ -103,4 +103,25 @@ const { variant, title } = Astro.props;
   .cb-green :global(.fl) { color: #022C22; }
   .cb-green :global(.s) { color: #064E3B; }
   .cb-green :global(.o) { color: #064E3B; }
+
+  /* ── White (licit) ── */
+  .cb-white {
+    border-color: var(--licit-ink);
+    background: var(--licit-code-bg);
+    box-shadow: 4px 4px 0 0 var(--licit-shadow);
+  }
+
+  .cb-white .cb-header {
+    color: #999;
+    border-bottom-color: var(--licit-ink);
+    background: var(--licit-code-header);
+  }
+
+  .cb-white .cb-body { color: var(--licit-ink); }
+  .cb-white :global(.pr) { color: #999; }
+  .cb-white :global(.cm) { color: #bbb; }
+  .cb-white :global(.cmd) { color: #FF0000; }
+  .cb-white :global(.fl) { color: #000; }
+  .cb-white :global(.s) { color: #444; }
+  .cb-white :global(.o) { color: #666; }
 </style>
