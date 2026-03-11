@@ -9,6 +9,7 @@ import PrincipleCard from './PrincipleCard.astro';
 import SquareIcon from './icons/SquareIcon.astro';
 import TriangleIcon from './icons/TriangleIcon.astro';
 import DiamondIcon from './icons/DiamondIcon.astro';
+import HexagonIcon from './icons/HexagonIcon.astro';
 import { type Lang, getTranslations } from '../i18n/translations';
 
 interface Props {
@@ -33,53 +34,67 @@ const t = getTranslations(lang);
       </div>
     </div>
 
-    <div class="journey">
-      <svg class="journey-svg" id="journeySvg">
-        <defs>
-          <linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#ededed" />
-            <stop offset="50%" stop-color="#C85A32" />
-            <stop offset="100%" stop-color="#10B981" />
-          </linearGradient>
-        </defs>
-        <path id="pathDash" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" stroke-dasharray="6 6" />
-        <path id="pathGlow" fill="none" stroke="url(#pathGrad)" stroke-width="2" opacity="0.45" class="journey-line" />
-        <g id="dotsContainer"></g>
-      </svg>
+    <!-- Licit compliance frame wrapping the journey -->
+    <div class="licit-frame">
+      <div class="licit-frame-label">{t.hero.licitFrameLabel}</div>
+      <div class="licit-stop">
+        <a href="https://diego303.github.io/licit-docs/" target="_blank" rel="noopener noreferrer" class="licit-stop-dot">
+          <HexagonIcon />
+        </a>
+        <div class="licit-stop-phase">{t.journey.licit.phase}</div>
+        <div class="licit-stop-name">licit</div>
+        <div class="licit-stop-tag">{t.journey.licit.tag}</div>
+        <p class="licit-stop-desc">{t.journey.licit.description}</p>
+      </div>
 
-      <div class="journey-stops">
-        <JourneyStop
-          variant="intake"
-          phase={t.journey.intake.phase}
-          name="intake"
-          tag={t.journey.intake.tag}
-          description={t.journey.intake.description}
-          href="https://diego303.github.io/intake-docs/"
-        >
-          <SquareIcon />
-        </JourneyStop>
+      <div class="journey">
+        <svg class="journey-svg" id="journeySvg">
+          <defs>
+            <linearGradient id="pathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#ededed" />
+              <stop offset="50%" stop-color="#C85A32" />
+              <stop offset="100%" stop-color="#10B981" />
+            </linearGradient>
+          </defs>
+          <path id="pathDash" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="2" stroke-dasharray="6 6" />
+          <path id="pathGlow" fill="none" stroke="url(#pathGrad)" stroke-width="2" opacity="0.45" class="journey-line" />
+          <g id="dotsContainer"></g>
+        </svg>
 
-        <JourneyStop
-          variant="architect"
-          phase={t.journey.architect.phase}
-          name="architect"
-          tag={t.journey.architect.tag}
-          description={t.journey.architect.description}
-          href="https://diego303.github.io/architect-docs/"
-        >
-          <TriangleIcon />
-        </JourneyStop>
+        <div class="journey-stops">
+          <JourneyStop
+            variant="intake"
+            phase={t.journey.intake.phase}
+            name="intake"
+            tag={t.journey.intake.tag}
+            description={t.journey.intake.description}
+            href="https://diego303.github.io/intake-docs/"
+          >
+            <SquareIcon />
+          </JourneyStop>
 
-        <JourneyStop
-          variant="vigil"
-          phase={t.journey.vigil.phase}
-          name="vigil"
-          tag={t.journey.vigil.tag}
-          description={t.journey.vigil.description}
-          href="https://diego303.github.io/vigil-docs/"
-        >
-          <DiamondIcon />
-        </JourneyStop>
+          <JourneyStop
+            variant="architect"
+            phase={t.journey.architect.phase}
+            name="architect"
+            tag={t.journey.architect.tag}
+            description={t.journey.architect.description}
+            href="https://diego303.github.io/architect-docs/"
+          >
+            <TriangleIcon />
+          </JourneyStop>
+
+          <JourneyStop
+            variant="vigil"
+            phase={t.journey.vigil.phase}
+            name="vigil"
+            tag={t.journey.vigil.tag}
+            description={t.journey.vigil.description}
+            href="https://diego303.github.io/vigil-docs/"
+          >
+            <DiamondIcon />
+          </JourneyStop>
+        </div>
       </div>
     </div>
   </div>
@@ -161,6 +176,37 @@ const t = getTranslations(lang);
   </div>
 </section>
 
+<!-- LICIT -->
+<section class="sec-licit" id="sec-l">
+  <div class="container">
+    <div class="tool-grid tool-grid--reversed">
+      <div>
+        <div class="phase">{t.licit.phase}</div>
+        <h3>licit</h3>
+        <div class="tool-subtitle">{t.licit.subtitle}</div>
+        <p>{t.licit.p1}</p>
+        <p>{t.licit.p2}</p>
+        <FeatureList variant="licit" items={t.licit.features} />
+        <a href="https://diego303.github.io/licit-docs/" target="_blank" rel="noopener noreferrer" class="btn btn-tool btn-tool--licit">{t.licit.docBtn}</a>
+      </div>
+      <CodeBlock variant="white" title={t.licit.codeTitle}>
+        <span class="line"><span class="cm">{t.licit.code.comment}</span></span>
+        <span class="line"><span class="pr">$ </span><span class="cmd">licit</span> <span class="fl">init</span></span>
+        <span class="line"><span class="o">{t.licit.code.initOutput1}</span></span>
+        <span class="line"><span class="o">{t.licit.code.initOutput2}</span></span>
+        <span class="line"></span>
+        <span class="line"><span class="pr">$ </span><span class="cmd">licit</span> <span class="fl">trace</span></span>
+        <span class="line"><span class="o">{t.licit.code.traceOutput}</span></span>
+        <span class="line"></span>
+        <span class="line"><span class="pr">$ </span><span class="cmd">licit</span> <span class="fl">verify</span></span>
+        <span class="line"><span class="o">{t.licit.code.verifyOutput1}</span></span>
+        <span class="line"><span class="o">{t.licit.code.verifyOutput2}</span></span>
+        <span class="line" style="color:#FF0000">{t.licit.code.verifyStatus}</span>
+      </CodeBlock>
+    </div>
+  </div>
+</section>
+
 <!-- PIPELINE -->
 <section class="sec-pipeline">
   <div class="container">
@@ -176,6 +222,8 @@ const t = getTranslations(lang);
           <span class="line">  <span class="fl">--check</span> <span class="s">"pytest && vigil scan src/"</span></span>
           <span class="line"></span>
           <span class="line"><span class="cmd" style="color:#10B981">vigil</span> <span class="fl">scan src/ --format junit</span></span>
+          <span class="line"></span>
+          <span class="line"><span class="cmd" style="color:#FF0000">licit</span> <span class="fl">verify --fail-on</span> <span class="s">high</span></span>
         </Fragment>
       </CodeBlock>
     </div>
@@ -265,13 +313,112 @@ const t = getTranslations(lang);
     flex-wrap: wrap;
   }
 
+  /* ═══ Licit Frame ═══ */
+  .licit-frame {
+    position: relative;
+    max-width: 960px;
+    margin: 40px auto 0;
+    padding: 200px 28px 28px;
+    border: 2px dashed rgba(255, 0, 0, 0.15);
+    animation: fadeUp 0.5s ease-out 0.15s both;
+  }
+
+  .licit-frame-label {
+    position: absolute;
+    top: -1px;
+    left: 24px;
+    background: #0a0a0c;
+    padding: 0 12px;
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 0, 0, 0.35);
+    transform: translateY(-50%);
+  }
+
+  .licit-stop {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    z-index: 3;
+  }
+
+  .licit-stop-dot {
+    width: 64px;
+    height: 64px;
+    border: 2px solid rgba(255, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    position: relative;
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .licit-stop-dot:hover {
+    border-color: rgba(255, 0, 0, 0.5);
+  }
+
+  .licit-stop-dot::before {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border: 1px solid rgba(255, 0, 0, 0.05);
+  }
+
+  .licit-stop-phase {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.25);
+    margin-bottom: 6px;
+  }
+
+  .licit-stop-name {
+    font-family: var(--f-head);
+    font-size: 20px;
+    font-weight: 700;
+    color: #FF0000;
+    margin-bottom: 4px;
+  }
+
+  .licit-stop-tag {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.06em;
+    margin-bottom: 10px;
+  }
+
+  .licit-stop-desc {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.55;
+    font-weight: 300;
+    max-width: 200px;
+  }
+
+  .licit-frame .journey {
+    max-width: none;
+    margin: 0;
+    padding: 20px 0 20px;
+  }
+
   /* ═══ Journey Map ═══ */
   .journey {
     position: relative;
     max-width: 900px;
     margin: 0 auto;
     padding: 20px 0 40px;
-    animation: fadeUp 0.5s ease-out 0.15s both;
   }
 
   .journey-svg {
@@ -351,6 +498,14 @@ const t = getTranslations(lang);
   }
   .btn-tool--vigil:hover {
     border-color: rgba(16, 185, 129, 0.5);
+  }
+
+  .btn-tool--licit {
+    color: #FF0000;
+    border-color: rgba(255, 0, 0, 0.3);
+  }
+  .btn-tool--licit:hover {
+    border-color: rgba(255, 0, 0, 0.5);
   }
 
   /* ═══ INTAKE ═══ */
@@ -446,6 +601,37 @@ const t = getTranslations(lang);
     font-weight: 300;
   }
 
+  /* ═══ LICIT ═══ */
+  .sec-licit {
+    background: #FFFFFF;
+    color: #000;
+    padding: 100px 0;
+    border-top: 3px solid #FF0000;
+    background-image: radial-gradient(
+      ellipse 500px 300px at 75% 50%,
+      rgba(255, 0, 0, 0.02),
+      transparent
+    );
+  }
+
+  .sec-licit .phase { color: #999; }
+  .sec-licit h3 {
+    font-family: var(--f-head);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #000;
+    margin-bottom: 6px;
+  }
+  .sec-licit .tool-subtitle { color: #FF0000; }
+  .sec-licit p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 14px;
+    font-weight: 300;
+  }
+
   /* ═══ PIPELINE ═══ */
   .sec-pipeline {
     background: #0a0a0c;
@@ -521,6 +707,25 @@ const t = getTranslations(lang);
       display: none;
     }
 
+    .licit-frame {
+      border: none;
+      padding: 0;
+      margin-top: 0;
+    }
+
+    .licit-frame-label {
+      display: none;
+    }
+
+    .licit-stop {
+      position: static;
+      padding: 0 0 16px;
+    }
+
+    .licit-frame .journey {
+      padding: 0;
+    }
+
     .tool-grid,
     .tool-grid--reversed {
       grid-template-columns: 1fr;
@@ -588,7 +793,7 @@ const t = getTranslations(lang);
 
   function drawJourneyPath() {
     const journey = document.querySelector('.journey');
-    const dots = document.querySelectorAll('.stop-dot');
+    const dots = document.querySelectorAll('.journey-stops .stop-dot, .journey-stops .stop-dot--link');
     const svg = document.getElementById('journeySvg');
     const pathDash = document.getElementById('pathDash');
     const pathGlow = document.getElementById('pathGlow') as SVGPathElement | null;

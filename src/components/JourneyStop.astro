@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant: 'intake' | 'architect' | 'vigil';
+  variant: 'intake' | 'architect' | 'vigil' | 'licit';
   phase: string;
   name: string;
   tag: string;
@@ -109,6 +109,10 @@ const { variant, phase, name, tag, description, href } = Astro.props;
 
   .stop--vigil .stop-name { color: #10B981; }
   .stop--vigil .stop-dot { border-color: rgba(16, 185, 129, 0.25); }
+
+  .stop--licit .stop-name { color: #FF0000; }
+  .stop--licit .stop-dot { border-color: rgba(255, 0, 0, 0.2); }
+  .stop--licit .stop-dot--link:hover { border-color: rgba(255, 0, 0, 0.5); }
 
   @media (max-width: 900px) {
     .stop:nth-child(2),

@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant: 'intake' | 'architect' | 'vigil';
+  variant: 'intake' | 'architect' | 'vigil' | 'licit';
   items: string[];
 }
 
@@ -38,4 +38,7 @@ const { variant, items } = Astro.props;
 
   .fl-vigil li { color: #064E3B; }
   .fl-vigil li::before { content: '\25C7'; color: #10B981; font-size: 10px; }
+
+  .fl-licit li { color: #444; }
+  .fl-licit li::before { content: '\2B21'; color: #FF0000; font-size: 8px; }
 </style>
