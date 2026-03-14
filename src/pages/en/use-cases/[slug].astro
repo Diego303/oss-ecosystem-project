@@ -1,0 +1,18 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import UseCaseDetail from '../../../components/UseCaseDetail.astro';
+import { useCases } from '../../../data/use-cases';
+
+export function getStaticPaths() {
+  return useCases.map((uc) => ({
+    params: { slug: uc.id },
+    props: { useCase: uc },
+  }));
+}
+
+const { useCase } = Astro.props;
+---
+
+<Layout lang="en" title={`${useCase.en.title} — OSS Ecosystem`}>
+  <UseCaseDetail useCase={useCase} lang="en" />
+</Layout>
