@@ -18,9 +18,10 @@ interface Props {
 
 const { lang } = Astro.props;
 const t = getTranslations(lang);
+const base = import.meta.env.BASE_URL;
 ---
 
-<Nav lang={lang} />
+<Nav lang={lang} isHome={true} />
 
 <!-- HERO -->
 <section class="hero">
@@ -249,6 +250,7 @@ const t = getTranslations(lang);
     <p>{t.cta.subtitle}</p>
     <div class="cta-buttons">
       <a href="#" class="btn btn-primary">{t.cta.btn}</a>
+      <a href={lang === 'en' ? `${base}en/use-cases/` : `${base}casos-de-uso/`} class="btn btn-ghost">{t.useCases.navLabel}</a>
     </div>
   </div>
 </section>

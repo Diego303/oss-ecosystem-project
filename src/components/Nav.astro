@@ -3,22 +3,27 @@ import { type Lang, getTranslations } from '../i18n/translations';
 
 interface Props {
   lang?: Lang;
+  isHome?: boolean;
 }
 
-const { lang = 'es' } = Astro.props;
+const { lang = 'es', isHome = true } = Astro.props;
 const t = getTranslations(lang);
 const base = import.meta.env.BASE_URL;
+const homeHref = lang === 'en' ? `${base}en/` : base;
+const useCasesHref = lang === 'en' ? `${base}en/use-cases/` : `${base}casos-de-uso/`;
+const anchor = (hash: string) => isHome ? hash : `${homeHref}${hash}`;
 ---
 
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo">OSS Ecosystem</div>
+    <a href={homeHref} class="nav-logo">OSS Ecosystem</a>
     <ul class="nav-links">
-      <li><a href="#sec-i">intake</a></li>
-      <li><a href="#sec-a">architect</a></li>
-      <li><a href="#sec-v">vigil</a></li>
-      <li><a href="#sec-l">licit</a></li>
-      <li><a href="#cta" class="cta">{t.nav.cta}</a></li>
+      <li><a href={anchor('#sec-i')}>intake</a></li>
+      <li><a href={anchor('#sec-a')}>architect</a></li>
+      <li><a href={anchor('#sec-v')}>vigil</a></li>
+      <li><a href={anchor('#sec-l')}>licit</a></li>
+      <li><a href={useCasesHref} class="nav-uc">{t.useCases.navLabel}</a></li>
+      <li><a href={anchor('#cta')} class="cta">{t.nav.cta}</a></li>
       <li class="lang-switch">
         {lang === 'es' ? (
           <span class="lang-active">ES</span>
@@ -64,6 +69,12 @@ const base = import.meta.env.BASE_URL;
     font-size: 15px;
     color: #ededed;
     letter-spacing: -0.02em;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .nav-logo:hover {
+    opacity: 0.85;
   }
 
   .nav-links {
@@ -92,6 +103,10 @@ const base = import.meta.env.BASE_URL;
     color: #0a0a0a;
     padding: 6px 16px;
     font-weight: 500;
+  }
+
+  .nav-uc {
+    color: rgba(255, 255, 255, 0.5);
   }
 
   .lang-switch {
@@ -123,12 +138,7 @@ const base = import.meta.env.BASE_URL;
   }
 
   @media (max-width: 900px) {
-    .nav-links a:not(.cta),
-    .nav-links a:not(.lang-link) {
-      /* Keep CTA and lang switcher visible */
-    }
-
-    .nav-links > li:not(:nth-last-child(-n+2)) {
+    .nav-links > li:not(:nth-last-child(-n+3)) {
       display: none;
     }
   }

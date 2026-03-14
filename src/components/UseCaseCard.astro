@@ -1,0 +1,179 @@
+---
+import { type Lang, getTranslations } from '../i18n/translations';
+import type { UseCase } from '../data/use-cases';
+
+interface Props {
+  useCase: UseCase;
+  lang: Lang;
+}
+
+const { useCase, lang } = Astro.props;
+const t = getTranslations(lang);
+const base = import.meta.env.BASE_URL;
+const uc = useCase[lang];
+const href = lang === 'en'
+  ? `${base}en/use-cases/${useCase.id}/`
+  : `${base}casos-de-uso/${useCase.id}/`;
+
+const priorityMap = {
+  critical: { label: t.useCases.priorityCritical, color: '#FF0000' },
+  high: { label: t.useCases.priorityHigh, color: '#C85A32' },
+  medium: { label: t.useCases.priorityMedium, color: 'rgba(255,255,255,0.5)' },
+  low: { label: t.useCases.priorityLow, color: 'rgba(255,255,255,0.25)' },
+};
+const priority = priorityMap[useCase.licitPriority];
+
+const toolColors: Record<string, string> = {
+  intake: '#ededed',
+  architect: '#C85A32',
+  vigil: '#10B981',
+  licit: '#FF0000',
+};
+const toolSymbols: Record<string, string> = {
+  intake: '\u25FB',
+  architect: '\u25B3',
+  vigil: '\u25C7',
+  licit: '\u2B21',
+};
+
+function stars(n: number): string {
+  return '\u2605'.repeat(n) + '\u2606'.repeat(3 - n);
+}
+---
+
+<a href={href} class="uc-card" data-category={useCase.category}>
+  <div class="uc-card-top">
+    <span class="uc-num">{String(useCase.number).padStart(2, '0')}</span>
+    <span class="uc-sector">{useCase.sector[lang]}</span>
+  </div>
+  <h3 class="uc-title">{uc.title}</h3>
+  <p class="uc-desc">{uc.shortDescription}</p>
+  <div class="uc-bottom">
+    <div class="uc-tools">
+      {Object.entries(useCase.tools).map(([tool, rating]) => (
+        <span class="uc-tool" style={`color: ${toolColors[tool]}`}>
+          <span class="uc-tool-sym">{toolSymbols[tool]}</span>
+          <span class="uc-tool-stars">{stars(rating)}</span>
+        </span>
+      ))}
+    </div>
+    <div class="uc-meta">
+      {useCase.diagramFile && <span class="uc-diagram-badge" title={t.useCases.hasDiagram}>&#x25A0;</span>}
+      <span class="uc-priority" style={`color: ${priority.color}; border-color: ${priority.color}`}>
+        {priority.label}
+      </span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .uc-card {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: transparent;
+    text-decoration: none;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+
+  .uc-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .uc-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .uc-num {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.15em;
+  }
+
+  .uc-sector {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .uc-title {
+    font-family: var(--f-head);
+    font-size: 15px;
+    font-weight: 600;
+    color: #ededed;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .uc-desc {
+    font-family: var(--f-body);
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.55;
+    flex: 1;
+    margin-bottom: 18px;
+  }
+
+  .uc-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+  }
+
+  .uc-tools {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .uc-tool {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    opacity: 0.7;
+  }
+
+  .uc-tool-sym {
+    font-size: 8px;
+  }
+
+  .uc-tool-stars {
+    font-family: var(--f-mono);
+    font-size: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .uc-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .uc-diagram-badge {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.25);
+  }
+
+  .uc-priority {
+    font-family: var(--f-mono);
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border: 1px solid;
+    opacity: 0.6;
+  }
+</style>

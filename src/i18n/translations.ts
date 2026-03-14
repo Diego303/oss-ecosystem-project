@@ -85,6 +85,32 @@ interface Translations {
     subtitle: string;
     btn: string;
   };
+  useCases: {
+    navLabel: string;
+    tag: string;
+    title: string;
+    subtitle: string;
+    backToHome: string;
+    backToList: string;
+    viewDetails: string;
+    all: string;
+    regulated: string;
+    devops: string;
+    context: string;
+    flow: string;
+    whyLicitTitle: string;
+    cicdTitle: string;
+    diagram: string;
+    toolUsage: string;
+    licitPriority: string;
+    priorityCritical: string;
+    priorityHigh: string;
+    priorityMedium: string;
+    priorityLow: string;
+    phase: string;
+    hasDiagram: string;
+    noDiagram: string;
+  };
   footer: { text: string };
 }
 
@@ -230,6 +256,32 @@ const translations: Record<Lang, Translations> = {
       subtitle: 'Instala y ejecuta tu primer pipeline con garantias tecnicas y regulatorias.',
       btn: 'Documentacion',
     },
+    useCases: {
+      navLabel: 'Casos de uso',
+      tag: '// Casos de uso',
+      title: '30 arquitecturas reales',
+      subtitle: 'Flujos productivos y empresariales donde el ecosistema se integra en el dia a dia.',
+      backToHome: 'Inicio',
+      backToList: 'Volver a casos de uso',
+      viewDetails: 'Ver caso de uso',
+      all: 'Todos',
+      regulated: 'Sectores regulados',
+      devops: 'Desarrollo y operaciones',
+      context: 'Contexto',
+      flow: 'Flujo con 4 herramientas',
+      whyLicitTitle: 'Por que licit es critico aqui',
+      cicdTitle: 'Pipeline CI/CD',
+      diagram: 'Diagrama de arquitectura',
+      toolUsage: 'Uso de herramientas',
+      licitPriority: 'Prioridad licit',
+      priorityCritical: 'Critico',
+      priorityHigh: 'Alto',
+      priorityMedium: 'Medio',
+      priorityLow: 'Bajo',
+      phase: 'Fase',
+      hasDiagram: 'Con diagrama',
+      noDiagram: 'Sin diagrama',
+    },
     footer: { text: '\u00A9 2026 OSS Ecosystem \u2014 intake \u00B7 architect \u00B7 vigil \u00B7 licit' },
   },
 
@@ -373,6 +425,32 @@ const translations: Record<Lang, Translations> = {
       title: 'Your AI pipeline, under control',
       subtitle: 'Install and run your first pipeline with technical and regulatory guarantees.',
       btn: 'Documentation',
+    },
+    useCases: {
+      navLabel: 'Use Cases',
+      tag: '// Use Cases',
+      title: '30 real-world architectures',
+      subtitle: 'Production and enterprise workflows where the ecosystem integrates into day-to-day operations.',
+      backToHome: 'Home',
+      backToList: 'Back to use cases',
+      viewDetails: 'View use case',
+      all: 'All',
+      regulated: 'Regulated sectors',
+      devops: 'Development and operations',
+      context: 'Context',
+      flow: 'Flow with 4 tools',
+      whyLicitTitle: 'Why licit is critical here',
+      cicdTitle: 'CI/CD Pipeline',
+      diagram: 'Architecture diagram',
+      toolUsage: 'Tool usage',
+      licitPriority: 'Licit priority',
+      priorityCritical: 'Critical',
+      priorityHigh: 'High',
+      priorityMedium: 'Medium',
+      priorityLow: 'Low',
+      phase: 'Phase',
+      hasDiagram: 'With diagram',
+      noDiagram: 'No diagram',
     },
     footer: { text: '\u00A9 2026 OSS Ecosystem \u2014 intake \u00B7 architect \u00B7 vigil \u00B7 licit' },
   },
